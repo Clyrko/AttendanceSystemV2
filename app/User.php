@@ -52,6 +52,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
         'permissions',
         'remember_token',
         'role',
+        'QRpassword',
     ];
 
     /**
