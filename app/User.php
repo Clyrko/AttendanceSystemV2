@@ -44,7 +44,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
     /**
      * {@inheritDoc}
      */
-    protected $fillable = [
+    protected $fillable = [ // things stored in the database 
         'email',
         'password',
         'last_name',

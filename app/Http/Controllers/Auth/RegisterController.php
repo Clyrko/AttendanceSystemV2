@@ -70,8 +70,8 @@ class RegisterController extends Controller
           if ($validation->fails()) {
                 return Redirect::back()->withErrors($validation)->withInput();
          }
-         $qrPass = bcrypt($request->email . $request->password);
-         $user = Sentinel::register($request->all() + ['QRpassword' => $qrPass]);
+         $qrPass = bcrypt($request->email . $request->password); // encrypts the password
+         $user = Sentinel::register($request->all() + ['QRpassword' => $qrPass]); // creates the QR code?
         //Activate the user **
          $activation = Activation::create($user);
          $activation = Activation::complete($user, $activation->code);

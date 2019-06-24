@@ -15,11 +15,12 @@ Home Page
 @section('content')
 <div class="content">
   <div class="title m-b-md">
-                      Attendance Management
+                      Attendance Management <!-- Title on homepage -->
                   </div>
 
                   <div class='row'>
 
+<!-- Buttons -->
 
                     <div class="col-md-6">
                       <a href="/arrival"><button class="btn btn-primary btn-block">Arrival</button></a>
@@ -30,6 +31,7 @@ Home Page
                         <div class="col-md-6">
                       <a href="/departure"><button class="btn btn-danger btn-block">Departure</button></a>
                     </div>
+                    
 @if (Sentinel::check() )
      Your name : {{Sentinel::getUser()->first_name}} <br>
      Last name : {{Sentinel::getUser()->last_name}} <br>

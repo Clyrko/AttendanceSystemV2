@@ -15,7 +15,8 @@ Route::get('/', ['uses' => 'HomeController@home']);
 Route::get('qrLogin', ['uses' => 'QrLoginController@index']);
 Route::get('qrLogin-option1', ['uses' => 'QrLoginController@indexoption2']);
 Route::post('qrLogin', ['uses' => 'QrLoginController@checkUser']);
-
+Route::get('/arrival','ArrivalTimeController@index');
+Route::get('/departure','DepartureTimeController@index');
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
         Route::get('dashboard', ['uses' => 'HomeController@dashboard', 'as' => 'home.dashboard']);

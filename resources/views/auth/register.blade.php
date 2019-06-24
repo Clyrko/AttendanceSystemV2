@@ -76,16 +76,16 @@ Register
               </div>
             </div>
 
-            <div class="form-group {{ $errors->has('role') ? 'has-error' : ''}}">
+            <div class="form-group {{ $errors->has('role') ? 'has-error' : ''}}"> <!-- Adding of roles -->
               <label for="role" class="cols-sm-2 control-label">Role</label>
 
                 <div class="cols-sm-10">
                 <select name="role" class="form-control">
-                  <option value="">Select a Role</option>
+                  <option value="">Select a Role</option> <!-- So that the role space isnt blank -->
                   <option value="Operations">Operations</option>
                   <option value="Finance">Finanace</option>
-                  <option></option>
-                  <option></option>
+                  <option value="Intern">Intern</option>
+                  <option value="Training">Training</option>
 
                 </select>
                 {!! $errors->first('role', '<p class="help-block">:message</p>') !!}
