@@ -2,7 +2,7 @@
 
 @extends('frontLayout.app')
 @section('title')
-Starter Qr login
+Arrival Login
 
 @stop
 @section('style')
@@ -15,6 +15,7 @@ Starter Qr login
             <div class="col-md-4">
             </div>
             <div class="col-md-4">
+              <h2 style="text-align:center;">Please, sign in</h2>
                 <div class="well" style="position: relative;display: inline-block;">
                     <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
                     <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
@@ -43,7 +44,7 @@ Starter Qr login
                 </div> --}}
                 </div>
             </div>
-            {{-- <div class="col-md-6">
+            <div class="col-md-4 "id="opt">
                 <select class="form-control" id="camera-select"></select>
                 <div class="form-group">
 
@@ -54,16 +55,27 @@ Starter Qr login
                     <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-stop"></span></button>
                  </div>
 
+                 <div class="row">
+                  <div class="col-md-4">
+                  </div>
+                  <div class="col-md-4">
+
+                  </div>
+                  <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4"></div>
+                  <div class="col-md-4" id="opt2">
                 <div class="thumbnail" id="result">
                     <div class="well">
                         <img width="320" height="240" id="scanned-img" src="">
                     </div>
                     <div class="caption">
-                        <h3>Scanned result</h3>
+                        {{-- <h3>Scanned result</h3> --}}
                         <p id="scanned-QR"></p>
                     </div>
                 </div>
-            </div> --}}
+            </div>
          @else
             <h1>Hallo! {{Sentinel::getUser()->first_name}}</h1>
           @endif
@@ -86,8 +98,9 @@ Starter Qr login
                 success: function(data) {
                   console.log(data);
                   if (data==1) {
+                    var url = "/arrival/" + data;
                     //location.reload()
-                    $(location).attr('href', '{{url('/')}}');
+                    $(location).attr('href', url);
                   }else{
                    return confirm('There is no user with this qr code');
                   }
@@ -342,6 +355,11 @@ $("document").ready(function() {
         $("#play").trigger('click');
     },10);
 });
+
+$("document").ready(function(){
+  $("#opt").hide();
+  $("#opt2").hide();
+})
 
 </script>
 
