@@ -6,7 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-
+use Illuminate\Support\Facades\Auth;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Sentinel;
@@ -50,15 +50,37 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
     public function showLoginForm()
     {
         return view('auth.login');
     }
-    
-    protected function login(Request $request)
+    public function showAdminLoginForm()
     {
+      return view('admin.login');
+    }
 
+      public function adminLogin(Request $request)
+          {
+              $this->validate($request, [
+                  'email'   => 'required|email',
+                  'password' => 'required|min:6'
+              ]);
+
+              if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+                  return redirect()->intended('/admin/dashboard');
+              }
+              return back()->withInput($request->only('email', 'remember'));
+          }
+
+          public function showDashboard()
+          {
+            return view('admin.dashboard');
+          }
+
+          protected function login(Request $request){
 
         try {
 
@@ -73,9 +95,9 @@ class LoginController extends Controller
             }
             $remember = (Input::get('remember') == 'on') ? true : false;
             if ($user = Sentinel::authenticate($request->all(), $remember)) {
-                
-                   return redirect('dashboard'); 
-                
+
+                   return redirect('dashboard');
+
             }
 
             return Redirect::back()->withErrors(['global' => 'Invalid password or this user does not exist' ]);
@@ -91,9 +113,9 @@ class LoginController extends Controller
 
         return Redirect::back()->withErrors(['global' => 'Login problem please contact the administrator']);
 
-        
+
     }
-    
+
 
     protected function logout()
     {

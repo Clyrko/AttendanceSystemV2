@@ -58,7 +58,7 @@ Home Page
   @endif
 
   <div class="title m-b-md">
-                      Attendance Management System<!-- Title on homepage -->
+                      Attendance Management<!-- Title on homepage -->
                   </div>
 
                   <div class='row'>

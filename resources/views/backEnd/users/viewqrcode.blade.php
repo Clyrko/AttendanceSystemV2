@@ -10,7 +10,7 @@ View User Qr Code
   <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(200)->generate(Sentinel::getUser()->QRpassword)) !!} ">
   <p> This is your qr code , Download it into your mobile</p>
   @endif
-  <button type="submit" id="autogenerate_qr" class="btn btn-default sub6">Change Now</button>
+  {{-- <button type="submit" id="autogenerate_qr" class="btn btn-default sub6">Change Now</button> --}}
 </div>
 
 <!--   end qr code -->
@@ -38,7 +38,7 @@ View User Qr Code
                 }
             })
 
-      
+
     }else{
         return false;
     }

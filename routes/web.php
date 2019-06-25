@@ -17,6 +17,8 @@ Route::get('qrLogin-option1', ['uses' => 'QrLoginController@indexoption2']);
 Route::post('qrLogin', ['uses' => 'QrLoginController@checkUser']);
 Route::get('/arrival','ArrivalTimeController@index');
 Route::get('/departure','DepartureTimeController@index');
+Route::get('/arrival/{user}','ArrivalTimeController@store');
+Route::get('/departure/{user}','DepartureTimeController@store');
 
  Route::group(['middleware' => ['web', 'auth', 'permission'] ], function () {
         Route::get('dashboard', ['uses' => 'HomeController@dashboard', 'as' => 'home.dashboard']);
@@ -38,3 +40,7 @@ Route::get('/departure','DepartureTimeController@index');
         Route::get('my-qrcode', ['uses' => 'QrLoginController@ViewUserQrCode']);
         Route::post('qrLogin-autogenerate', ['uses' => 'QrLoginController@QrAutoGenerate']);
  });
+
+Route::get('/admin','AdminLoginController@showAdminLoginForm');
+Route::post('/admin','AdminLoginController@adminLogin')->name('admin');
+Route::get('/admin/dashboard','AdminLoginController@showDashboard');
